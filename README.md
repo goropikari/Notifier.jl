@@ -3,7 +3,7 @@
 This package is notification tools for Linux OS.
 
 ## Setup
-Before using LinuxNotifier package, you need to install following softwares to work correctly in your Linux system.
+Before using LinuxNotifier, you need to install following softwares to work correctly in your Linux system.
 - libnotify for desktop notifications
 - "mail" for e-mail notifications
 
