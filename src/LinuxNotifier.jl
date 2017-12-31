@@ -1,36 +1,44 @@
 module LinuxNotifier
-export lnotify, register_email, email, alarm
+
+import Base.notify
+export notify, register_email, email, alarm
 
 import WAV
 
 
 if is_unix() || is_linux()
-    """
-    lnotify(message; title, sound, music, time)
+    isstring(x) = typeof(x) <: AbstractString
 
-    defalut
+    @doc """
+    ---
+    notify(message::String; title::String, sound, time)
 
-    title = "\$(now())" \n
-    sound = false \n
-    music = "$(Pkg.dir())/LinuxNotifier/src/LinuxNotifier_sound.wav" \n
+    title = "\$(now())"\n
+    sound = false\n
     time = 4 # display time (seconds)
 
-    """
-    function lnotify(message::String;
+    """ notify
+    function notify(message::String;
                      title="$(now())",
                      sound=false,
-                     music="$(Pkg.dir())/LinuxNotifier/src/LinuxNotifier_sound.wav",
                      time=4)
-        if sound || music != "$(Pkg.dir())/LinuxNotifier/src/LinuxNotifier_sound.wav"
+        if sound == true
             run(`notify-send $title $message -i $(Pkg.dir())/LinuxNotifier/src/logo.svg -t $(time * 1000)`)
-            WAV.wavplay("$music")
+            WAV.wavplay("$(Pkg.dir())/LinuxNotifier/src/LinuxNotifier_sound.wav")
+        elseif isstring(sound)
+            run(`notify-send $title $message -i $(Pkg.dir())/LinuxNotifier/src/logo.svg -t $(time * 1000)`)
+            WAV.wavplay(sound)
         else
             run(`notify-send $title $message -i $(Pkg.dir())/LinuxNotifier/src/logo.svg -t $(time * 1000)`)
         end
     end
 
-    "notify by sound"
-    alarm(;music="$(Pkg.dir())/LinuxNotifier/src/LinuxNotifier_sound.wav") = WAV.wavplay("$music")
+    @doc """
+        alarm(;sound::AbstactString)
+        notify by sound
+
+    """ alarm
+    alarm(;sound::AbstractString="$(Pkg.dir())/LinuxNotifier/src/LinuxNotifier_sound.wav") = WAV.wavplay(sound)
 
 
     "register a recipient e-mail address"

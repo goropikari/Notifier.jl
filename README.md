@@ -22,14 +22,14 @@ If following command works correctly, you don't need further setting.
 ### popup notification
 ```Julia
 	using LinuxNotifier
-	lnotify("calculation done") 
+	notify("calculation done")
 	# defalut title is set by date.
-	# You can change the title by title option, lnotify("calculation done", title="hogehoge")
-	lnotify("calculation done", sound=true) # with sound
-	lnotify("calculation done", music="./hoge.wav") # specify a sound file
-	alarm() # only sound. You can specify a sound file, alarm(music="./piyo.wav")
+	# You can change the title by title option, notify("calculation done", title="hogehoge")
+	notify("calculation done", sound=true) # with sound
+	notify("calculation done", sound="./hoge.wav") # specify a sound file
+	alarm() # only sound. You can specify a sound file, alarm(sound="./piyo.wav")
 ```
-<img src="https://github.com/goropikari/LinuxNotifier.jl/blob/master/src/popup.png" align="left"  />
+<img src="./src/popup.png" align="left"  />
 
 
 <br><br><br><br>
