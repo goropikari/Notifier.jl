@@ -27,7 +27,7 @@ If following command works correctly, you don't need further setting.
 	# You can change the title by title option, notify("calculation done", title="foofoo")
 	notify("calculation done", sound=true) # with sound
 	notify("calculation done", sound="./foo.wav") # specify a sound file
-	alarm() # only sound. You can specify a sound file, alarm(sound="./piyo.wav")
+	alarm() # only sound. You can specify a sound file, alarm(sound="./foo.wav")
 ```
 <img src="./src/popup.png" align="left"  />
 
