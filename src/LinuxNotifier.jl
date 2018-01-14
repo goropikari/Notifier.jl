@@ -23,13 +23,13 @@ if is_unix() || is_linux()
                      sound=false,
                      time=4)
         if sound == true
-            run(`notify-send $title $message -i $(Pkg.dir())/LinuxNotifier/src/logo.svg -t $(time * 1000)`)
-            WAV.wavplay("$(Pkg.dir())/LinuxNotifier/src/LinuxNotifier_sound.wav")
+            run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
+            WAV.wavplay(joinpath(@__DIR__, "LinuxNotifier_sound.wav"))
         elseif isstring(sound)
-            run(`notify-send $title $message -i $(Pkg.dir())/LinuxNotifier/src/logo.svg -t $(time * 1000)`)
+            run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
             WAV.wavplay(sound)
         else
-            run(`notify-send $title $message -i $(Pkg.dir())/LinuxNotifier/src/logo.svg -t $(time * 1000)`)
+            run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
         end
     end
 
@@ -38,7 +38,7 @@ if is_unix() || is_linux()
         notify by sound
 
     """ alarm
-    alarm(;sound::AbstractString="$(Pkg.dir())/LinuxNotifier/src/LinuxNotifier_sound.wav") = WAV.wavplay(sound)
+    alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = WAV.wavplay(sound)
 
 
     "register a recipient e-mail address"
