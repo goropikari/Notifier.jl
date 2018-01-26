@@ -3,7 +3,7 @@ module LinuxNotifier
 import Base.notify
 export notify, register_email, email, alarm
 
-import WAV
+import WAV.wavplay
 
 
 if is_unix() || is_linux()
@@ -24,10 +24,10 @@ if is_unix() || is_linux()
                      time=4)
         if sound == true
             run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
-            WAV.wavplay(joinpath(@__DIR__, "LinuxNotifier_sound.wav"))
+            @async wavplay(joinpath(@__DIR__, "LinuxNotifier_sound.wav"))
         elseif isstring(sound)
             run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
-            WAV.wavplay(sound)
+            @async wavplay(sound)
         else
             run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
         end
@@ -37,8 +37,10 @@ if is_unix() || is_linux()
         alarm(;sound::AbstactString)
         notify by sound
 
+        if you choose a specific sound WAV file, you can use it instead of the defalut sound.
+
     """ alarm
-    alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = WAV.wavplay(sound)
+    alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = @async wavplay(sound)
 
 
     "register a recipient e-mail address"
