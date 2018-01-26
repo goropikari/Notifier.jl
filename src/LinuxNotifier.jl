@@ -2,23 +2,20 @@ module LinuxNotifier
 
 import Base.notify
 export notify, register_email, email, alarm
-
 import WAV.wavplay
 
-
 if is_unix() || is_linux()
-
     @doc """
     ---
     notify(message::String; title::String, sound, time)
 
     defalut parameter\n
-        title = "\$(now())"\n
+        title = "\$(round(now(), Dates.Second(1)))"\n
         sound = false\n
         time = 4 # display time (seconds)
     """ notify
     function notify(message::String;
-                     title="$(now())",
+                     title="$(round(now(), Dates.Second(1)))",
                      sound::Union{Bool, AbstractString}=false,
                      time::Real=4)
         if sound == true || typeof(sound) <: AbstractString
@@ -87,10 +84,10 @@ if is_unix() || is_linux()
     email(message; subject, ToAddress)
 
     defalut\n
-    subject="\$(now())"\n
+    subject="\$(round(now(), Dates.Second(1)))"\n
     ToAddress="not-specified"\n
     """ email
-    function email(message; subject="$(now())", ToAddress="not-specified")
+    function email(message; subject="$(round(now(), Dates.Second(1)))", ToAddress="not-specified")
         output_dir = "$(Pkg.dir())/LinuxNotifier/email"
         if ToAddress == "not-specified"
             if ispath(output_dir * "/address.txt")
