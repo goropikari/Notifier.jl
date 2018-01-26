@@ -7,30 +7,30 @@ import WAV.wavplay
 
 
 if is_unix() || is_linux()
-    isstring(x) = typeof(x) <: AbstractString
 
     @doc """
     ---
     notify(message::String; title::String, sound, time)
 
-    title = "\$(now())"\n
-    sound = false\n
-    time = 4 # display time (seconds)
-
+    defalut parameter\n
+        title = "\$(now())"\n
+        sound = false\n
+        time = 4 # display time (seconds)
     """ notify
     function notify(message::String;
                      title="$(now())",
-                     sound=false,
-                     time=4)
-        if sound == true
-            run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
-            @async wavplay(joinpath(@__DIR__, "LinuxNotifier_sound.wav"))
-        elseif isstring(sound)
-            run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
-            @async wavplay(sound)
-        else
-            run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
+                     sound::Union{Bool, AbstractString}=false,
+                     time::Real=4)
+        if sound == true || typeof(sound) <: AbstractString
+            if sound == true
+                wavplay(joinpath(@__DIR__, "LinuxNotifier_sound.wav"))
+            elseif ispath(sound)
+                wavplay(sound)
+            end
         end
+        run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
+
+        return
     end
 
     @doc """
@@ -38,12 +38,15 @@ if is_unix() || is_linux()
         notify by sound
 
         if you choose a specific sound WAV file, you can use it instead of the defalut sound.
-
     """ alarm
     alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = @async wavplay(sound)
 
 
-    "register a recipient e-mail address"
+    @doc """
+    register_email()
+
+    register a recipient e-mail address
+    """ register_email
     function register_email()
         output_dir = "$(Pkg.dir())/LinuxNotifier/email"
         if ! ispath(output_dir); mkdir(output_dir); end
@@ -75,21 +78,18 @@ if is_unix() || is_linux()
 
             println("\nRecipient e-mail address is saved at $output_dir/address.txt.")
             println("If you want to change the address, modify $output_dir/address.txt directly or execute register_email() again.")
-
         end
-
     end
 
 
 
-    """
+    @doc """
     email(message; subject, ToAddress)
 
     defalut\n
     subject="\$(now())"\n
     ToAddress="not-specified"\n
-
-    """
+    """ email
     function email(message; subject="$(now())", ToAddress="not-specified")
         output_dir = "$(Pkg.dir())/LinuxNotifier/email"
         if ToAddress == "not-specified"
