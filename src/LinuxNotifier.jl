@@ -4,17 +4,25 @@ import Base.notify
 export notify, register_email, email, alarm
 import WAV.wavplay
 
+@doc """
+    alarm(;sound::AbstractString)
+    notify by sound
+
+    if you choose a specific sound WAV file, you can use it instead of the defalut sound.
+""" alarm
+alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = wavplay(sound)
+
 if is_unix() || is_linux()
     @doc """
     ---
-    notify(message::String; title::String, sound, time)
+    notify(message::AbstractString; title::AbstractString, sound, time)
 
     defalut parameter\n
         title = "\$(round(now(), Dates.Second(1)))"\n
         sound = false\n
         time = 4 # display time (seconds)
     """ notify
-    function notify(message::String;
+    function notify(message::AbstractString;
                      title="$(round(now(), Dates.Second(1)))",
                      sound::Union{Bool, AbstractString}=false,
                      time::Real=4)
@@ -29,15 +37,6 @@ if is_unix() || is_linux()
 
         return
     end
-
-    @doc """
-        alarm(;sound::AbstactString)
-        notify by sound
-
-        if you choose a specific sound WAV file, you can use it instead of the defalut sound.
-    """ alarm
-    alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = @async wavplay(sound)
-
 
     @doc """
     register_email()
