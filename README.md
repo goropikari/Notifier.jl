@@ -35,19 +35,19 @@ If following command works correctly, you don't need further setting.
 <br><br><br><br>
 ### e-mail notification
 ```Julia
-	email("message", ToAddress="foo@example.com") # defalut subject is set by date.
-	email("message", subject="result", ToAddress="foo@example.com")
+	email("message", To="foo@example.com") # defalut subject is set by date.
+	email("message", subject="result", To="foo@example.com")
 ```
 
 
-If you use "email" fn frequently, I recommend you to register your e-email address by "register_email" fn.
+If you use "email" function frequently, I recommend you to register your email address by "register_email" functio.
 ```Julia
 	julia> register_email()
 	Type your desired recipient e-mail address to receive a notification.
 	e-mail: foo@example.com
 
 	Recipient e-mail address is saved at /path/to/.julia/v0.5/LinuxNotifier/email/address.txt.
-	If you want to change the address, modify /path/to/.julia/v0.5/LinuxNotifier/email/address.txt directly or execute register_email() again
+	If you want to change the address, modify /path/to/.julia/v0.5/LinuxNotifier/email/address.txt directly or run register_email() again
 ```
 
 After you registered, you don't need specify e-mail address.
