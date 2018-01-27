@@ -44,11 +44,10 @@ if is_unix() || is_linux()
     register a recipient e-mail address
     """ register_email
     function register_email()
-        output_dir = "$(Pkg.dir())/LinuxNotifier/email"
-        if ! ispath(output_dir); mkdir(output_dir); end
+        emaildir = joinpath(@__DIR__, "..", "email")
+        mkpath(emaildir)
 
-        if ispath(output_dir * "/address.txt")
-
+        if ispath(joinpath(emaildir, "address.txt"))
             println("An e-mail address is already registered.")
             println("Do you overwrite? [y/n]")
             YesNo = lowercase(chomp(readline(STDIN)))
@@ -56,51 +55,43 @@ if is_unix() || is_linux()
             if YesNo ∈ ["n", "no"]
                 return
             end
-
-            println("\nType your desired recipient e-mail address to receive a notification.")
-            print("e-mail: ")
-            ToAddress = chomp(readline(STDIN))
-            fp = open("$output_dir/address.txt", "w")
-            write(fp, ToAddress)
-            close(fp)
-
-        else
-            println("Type your desired recipient e-mail address to receive a notification.")
-            print("e-mail: ")
-            ToAddress = chomp(readline(STDIN))
-            fp = open("$output_dir/address.txt", "w")
-            write(fp, ToAddress)
-            close(fp)
-
-            println("\nRecipient e-mail address is saved at $output_dir/address.txt.")
-            println("If you want to change the address, modify $output_dir/address.txt directly or execute register_email() again.")
         end
+
+        println("\nType your desired recipient e-mail address to receive a notification.")
+        print("e-mail: ")
+        To = chomp(readline(STDIN))
+        fp = open(joinpath(emaildir, "address.txt"), "w")
+        write(fp, To)
+        close(fp)
+
+        println("\nRecipient e-mail address is saved at $(abspath((joinpath(emaildir, "address.txt")))).")
+        println("If you want to change the address, modify $(abspath((joinpath(emaildir, "address.txt")))) directly or run register_email() again.")
     end
 
 
 
     @doc """
-    email(message; subject, ToAddress)
+    email(message; subject, To)
 
     defalut\n
     subject="\$(round(now(), Dates.Second(1)))"\n
-    ToAddress="not-specified"\n
+    To="not-specified"\n
     """ email
-    function email(message; subject="$(round(now(), Dates.Second(1)))", ToAddress="not-specified")
-        output_dir = "$(Pkg.dir())/LinuxNotifier/email"
-        if ToAddress == "not-specified"
-            if ispath(output_dir * "/address.txt")
-                ToAddress = readline(output_dir * "/address.txt")
+    function email(message; subject="$(round(now(), Dates.Second(1)))", To="not-specified")
+        emaildir = joinpath(@__DIR__, "..", "email")
+        if To == "not-specified"
+            if ispath(joinpath(emaildir, "address.txt"))
+                To = readline(joinpath(emaildir, "address.txt"))
             else
                 println("Email address is not specified.")
-                println("To send an e-mail, register an e-mail address by register_email() or")
-                println("specify it by ToAddress option like")
-                println("	email(\"some messages\", ToAddress=\"hoge@example.com\").")
+                println("In order to send an e-mail, register an e-mail address by register_email() or")
+                println("specify it by To option like")
+                println("	email(\"some messages\", To=\"foo@example.com\").")
 
                 return
             end
         end
-        run(pipeline(`echo $message`, `mail -s $subject $ToAddress`))
+        run(pipeline(`echo $message`, `mail -s $subject $To`))
     end
 end # if
 end # module
