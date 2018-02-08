@@ -1,6 +1,6 @@
 # LinuxNotifier
 
-This package is notification tools for Linux OS.
+This package is a notification tool for Linux OS.
 
 ## Setup
 Before using LinuxNotifier, you need to install following softwares to work correctly in your Linux system.
@@ -40,7 +40,7 @@ If following command works correctly, you don't need further setting.
 ```
 
 
-If you use "email" function frequently, I recommend you to register your email address by "register_email" functio.
+If you use "email" function frequently, I recommend you to register your email address by "register_email" function.
 ```Julia
 	julia> register_email()
 	Type your desired recipient e-mail address to receive a notification.
@@ -50,7 +50,7 @@ If you use "email" function frequently, I recommend you to register your email a
 	If you want to change the address, modify /path/to/.julia/v0.5/LinuxNotifier/email/address.txt directly or run register_email() again
 ```
 
-After you registered, you don't need specify e-mail address.
+After you registered, you don't need to specify e-mail address.
 ```Julia
 	email("message")
 ```
