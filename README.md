@@ -3,7 +3,7 @@ This package is notification tools for Julialang.
 
 ## Installation
 ```Julia
-	Pkg.clone("git://github.com/goropikari/Notifier.jl.git")
+Pkg.clone("git://github.com/goropikari/Notifier.jl.git")
 ```
 
 # Linux OS
@@ -15,7 +15,7 @@ Before using Notifier.jl, you need to install following softwares in your Linux 
 This package uses "mail" linux command to notify by e-mail. Thus you need some settings in advance.
 If following command works correctly, you don't need further setting.
 ```bash
-	$ echo test | mail -s foo yourmail@example.com
+$ echo test | mail -s foo yourmail@example.com
 ```
 
 
