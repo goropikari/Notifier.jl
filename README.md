@@ -50,7 +50,7 @@ If you use "email" function frequently, I recommend you to register your email a
 	If you want to change the address, modify /path/to/.julia/v0.6/Notifier/email/address.txt directly or run register_email() again
 ```
 
-After you registered, you don't need specify e-mail address.
+After you registered, you don't need to specify e-mail address.
 ```Julia
 	email("message")
 ```
