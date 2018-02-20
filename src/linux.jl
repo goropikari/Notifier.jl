@@ -7,17 +7,17 @@ import WAV.wavplay
 notify(message::AbstractString; title::AbstractString, sound, time)
 
 defalut parameter\n
-    title = "\$(round(now(), Dates.Second(1)))"\n
+    title = "Julia"\n
     sound = false\n
     time = 4 # display time (seconds)
 """ notify
 function notify(message::AbstractString;
-                 title="$(round(now(), Dates.Second(1)))",
+                 title="Julia",
                  sound::Union{Bool, AbstractString}=false,
                  time::Real=4)
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
-            wavplay(joinpath(@__DIR__, "LinuxNotifier_sound.wav"))
+            wavplay(joinpath(@__DIR__, "Notifier_sound.wav"))
         elseif ispath(sound)
             wavplay(sound)
         end
