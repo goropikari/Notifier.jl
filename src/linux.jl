@@ -1,6 +1,5 @@
 import Base.notify
 export notify, register_email, email, alarm
-import WAV.wavplay
 
 @doc """
 ---
@@ -17,9 +16,9 @@ function notify(message::AbstractString;
                  time::Real=4)
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
-            wavplay(joinpath(@__DIR__, "Notifier_sound.wav"))
+            run(pipeline(`aplay $(joinpath(@__DIR__, "Notifier_sound.wav"))`, stderr=DevNull))
         elseif ispath(sound)
-            wavplay(sound)
+            run(pipeline(`aplay $sound`, stderr=DevNull))
         end
     end
     run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
@@ -63,7 +62,7 @@ end
 
     if you choose a specific sound WAV file, you can use it instead of the defalut sound.
 """ alarm
-alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = wavplay(sound)
+alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = run(pipeline(`aplay $sound`, stderr=DevNull))
 
 
 @doc """
