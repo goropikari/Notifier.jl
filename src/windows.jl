@@ -18,10 +18,10 @@ function notify(message::AbstractString;
                  time::Real=4)
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
-            @async run(`powershell -NoExit '('new-object System.Media.SoundPlayer $(joinpath(@__DIR__, "default.wav"))')'.Play'('')'`)
+            @async run(`powershell -Command '('new-object System.Media.SoundPlayer $(joinpath(@__DIR__, "default.wav"))')'.PlaySync'('')'`)
         elseif ispath(sound)
             #@async run(`aplay -q $sound`)
-            @async run(`powershell -NoExit '('new-object System.Media.SoundPlayer $sound')'.Play'('')'`)
+            @async run(`powershell -Command '('new-object System.Media.SoundPlayer $sound')'.PlaySync'('')'`)
         end
     end
     @async run(pipeline(`powershell '('new-object -comobject wscript.shell')'.popup'(''"'$message'"', $time,'"'$title'"',0')'`, stdout=DevNull, stderr=DevNull))
@@ -35,4 +35,4 @@ end
 
     if you choose a specific sound WAV file, you can use it instead of the default sound.
 """ alarm
-alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav")) = @async run(`powershell -NoExit '('new-object System.Media.SoundPlayer $sound')'.Play'('')'`)
+alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav")) = @async run(`powershell -Command '('new-object System.Media.SoundPlayer $sound')'.PlaySync'('')'`)
