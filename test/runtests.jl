@@ -8,3 +8,6 @@ end
 if is_apple()
     include("mac_test.jl")
 end
+if is_windows()
+    include("windows_test.jl")
+end

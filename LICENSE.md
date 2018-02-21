@@ -42,3 +42,5 @@ Related to macOS, especially mac.jl, is:
 > CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 > TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 > SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+default.wav (se_maoudamashii_onepoint22.wav) : [魔王魂](https://maoudamashii.jokersounds.com/)

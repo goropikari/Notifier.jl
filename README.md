@@ -1,4 +1,6 @@
 # Notifier
+[![Build Status](https://travis-ci.org/goropikari/Notifier.jl.svg?branch=master)](https://travis-ci.org/goropikari/Notifier.jl)
+
 This package is notification tools for Julialang.
 
 ## Installation
@@ -22,8 +24,6 @@ If following command works correctly, you don't need further setting.
 ```bash
 $ echo test | mail -s foo yourmail@example.com
 ```
-
-
 
 ## Usage
 ### popup notification
@@ -88,4 +88,17 @@ notify("Notification A", group="group1")
 notify("Notification B", group="group2")
 
 Notifier.remove("group1")
+```
+
+# Windows (Experimental)
+## Usage
+```Julia
+	using Notifier
+	notify("calculation done")
+	# defalut title is "Julia".
+	# You can change the title by title option.
+	notify("calculation done", title="foofoo")
+	notify("calculation done", sound=true) # with sound
+	notify("calculation done", sound="foo.wav") # specify a sound file
+	alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
 ```
