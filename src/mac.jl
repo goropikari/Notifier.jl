@@ -8,7 +8,7 @@ if Homebrew.installed("terminal-notifier")
 		error("terminal-notifier binary does not exist: $terminalnotifier")
 	end
 else
-	error("OSXNotifier not properly installed. Please run Pkg.build(\"OSXNotifier\")")
+	error("Notifier not properly installed. Please run Pkg.build(\"Notifier\")")
 end
 
 function notify(message=""; title="Julia", subtitle="", group="", sound=false, sender="julialang.org")
