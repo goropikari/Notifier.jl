@@ -11,6 +11,11 @@ Pkg.clone("git://github.com/goropikari/Notifier.jl.git")
 Before using Notifier.jl, you need to install following softwares in your Linux system.
 - "libnotify" for desktop notifications
 - "mail" for e-mail notifications
+- "aplay" (Advanced Linux Sound Architecture) for playing sound.
+
+```bash
+sudo apt install libnotify-bin alsa-utils mailutils heirloom-mailx bsd-mailx
+```
 
 This package uses "mail" linux command to notify by e-mail. Thus you need some settings in advance.
 If following command works correctly, you don't need further setting.

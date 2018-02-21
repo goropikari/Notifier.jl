@@ -1,3 +1,5 @@
+__precompile__()
+
 module Notifier
 
 if is_linux() include("linux.jl") end
