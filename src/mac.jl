@@ -1,17 +1,15 @@
-import Homebrew
 import Base.notify
 export notify
 
-if Homebrew.installed("terminal-notifier")
-	terminalnotifier = joinpath(Homebrew.prefix("terminal-notifier"), "bin", "terminal-notifier")
-	if !isfile(terminalnotifier)
-		error("terminal-notifier binary does not exist: $terminalnotifier")
-	end
+if ispath("/usr/local/bin/terminal-notifier")
+	const terminalnotifier = "/usr/local/bin/terminal-notifier"
+elseif ispath(joinpath(Pkg.dir("Homebrew"), "deps", "usr", "bin", "terminal-notifier"))
+	const terminalnotifier = joinpath(Pkg.dir("Homebrew"), "deps", "usr", "bin", "terminal-notifier")
 else
-	error("Notifier not properly installed. Please run Pkg.build(\"Notifier\")")
+	error("Notifier.jl not properly installed. Please run Pkg.build(\"Notifier\")")
 end
 
-function notify(message=""; title="Julia", subtitle="", group="", sound=false, sender="julialang.org")
+function notify(message=""; title="Julia", subtitle="", group="", sound=false, sender="org.julialang.launcherapp")
 	if group != "" && sound != "" && sound != false
 		run(`$terminalnotifier -sender $sender -message $message -title $title -subtitle $subtitle -group $group -sound $sound`)
 	elseif sound != "" && sound != false
@@ -23,7 +21,7 @@ function notify(message=""; title="Julia", subtitle="", group="", sound=false, s
 	end
 end
 
-function remove(group="ALL"; sender="julialang.org")
+function remove(group="ALL"; sender="org.julialang.launcherapp")
 	run(`$terminalnotifier -remove $group -sender $sender`)
 end
 
