@@ -102,3 +102,4 @@ notify("calculation done", sound=true) # with sound
 notify("calculation done", sound="foo.wav") # specify a sound file
 alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
 ```
+![Screenshot of a Notification](./docs/winpopup.png?raw=true)
