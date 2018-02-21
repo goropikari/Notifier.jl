@@ -16,7 +16,7 @@ function notify(message::AbstractString;
                  time::Real=4)
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
-            @async run(`aplay -q $(joinpath(@__DIR__, "Notifier_sound.wav"))`)
+            @async run(`aplay -q $(joinpath(@__DIR__, "default.wav"))`)
         elseif ispath(sound)
             @async run(`aplay -q $sound`)
         end
@@ -62,7 +62,7 @@ end
 
     if you choose a specific sound WAV file, you can use it instead of the defalut sound.
 """ alarm
-alarm(;sound::AbstractString=joinpath(@__DIR__, "Notifier_sound.wav")) = @async run(`aplay -q $sound`)
+alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav")) = @async run(`aplay -q $sound`)
 
 @doc """
 email(message; subject, To)
