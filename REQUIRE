@@ -1,3 +1,2 @@
 julia 0.6
-@linux BinDeps 0.4.7
 @osx Homebrew

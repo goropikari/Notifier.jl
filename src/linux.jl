@@ -16,9 +16,9 @@ function notify(message::AbstractString;
                  time::Real=4)
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
-            run(pipeline(`aplay $(joinpath(@__DIR__, "Notifier_sound.wav"))`, stderr=DevNull))
+            @async run(`aplay -q $(joinpath(@__DIR__, "Notifier_sound.wav"))`)
         elseif ispath(sound)
-            run(pipeline(`aplay $sound`, stderr=DevNull))
+            @async run(`aplay -q $sound`)
         end
     end
     run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
@@ -62,8 +62,7 @@ end
 
     if you choose a specific sound WAV file, you can use it instead of the defalut sound.
 """ alarm
-alarm(;sound::AbstractString=joinpath(@__DIR__, "LinuxNotifier_sound.wav")) = run(pipeline(`aplay $sound`, stderr=DevNull))
-
+alarm(;sound::AbstractString=joinpath(@__DIR__, "Notifier_sound.wav")) = @async run(`aplay -q $sound`)
 
 @doc """
 email(message; subject, To)
