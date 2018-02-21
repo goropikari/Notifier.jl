@@ -11,9 +11,9 @@ Pkg.clone("git://github.com/goropikari/Notifier.jl.git")
 # Linux OS
 ## Setup
 Before using Notifier.jl, you need to install following softwares in your Linux system.
-- "libnotify" for desktop notifications
-- "mail" for e-mail notifications
-- "aplay" (Advanced Linux Sound Architecture) for playing sound.
+- "libnotify" for a desktop notification
+- "mail" for an e-mail notification
+- "aplay" (Advanced Linux Sound Architecture) for a sound notification
 
 ```bash
 sudo apt install libnotify-bin alsa-utils mailutils heirloom-mailx bsd-mailx
@@ -28,37 +28,37 @@ $ echo test | mail -s foo yourmail@example.com
 ## Usage
 ### popup notification
 ```Julia
-	using Notifier
-	notify("calculation done")
-	# defalut title is "Julia".
-	# You can change the title by title option.
-	notify("calculation done", title="foofoo")
-	notify("calculation done", sound=true) # with sound
-	notify("calculation done", sound="./foo.wav") # specify a sound file
-	alarm() # only sound. You can specify a sound file, alarm(sound="./foo.wav")
+using Notifier
+notify("calculation done")
+# defalut title is "Julia".
+# You can change the title by title option.
+notify("calculation done", title="foofoo")
+notify("calculation done", sound=true) # with sound
+notify("calculation done", sound="./foo.wav") # specify a sound file
+alarm() # only sound. You can specify a sound file, alarm(sound="./foo.wav")
 ```
 ![Screenshot of a Notification](./docs/popup.png?raw=true)
 
 ### e-mail notification
 ```Julia
-	email("message", To="foo@example.com") # default subject is set by date.
-	email("message", subject="result", To="foo@example.com")
+email("message", To="foo@example.com") # default subject is set by date.
+email("message", subject="result", To="foo@example.com")
 ```
 
 
 If you use "email" function frequently, I recommend you to register your email address by "register_email" function.
 ```Julia
-	julia> register_email()
-	Type your desired recipient e-mail address to receive a notification.
-	e-mail: foo@example.com
+julia> register_email()
+Type your desired recipient e-mail address to receive a notification.
+e-mail: foo@example.com
 
-	Recipient e-mail address is saved at /path/to/.julia/v0.6/Notifier/email/address.txt.
-	If you want to change the address, modify /path/to/.julia/v0.6/Notifier/email/address.txt directly or run register_email() again
+Recipient e-mail address is saved at /path/to/.julia/v0.6/Notifier/email/address.txt.
+If you want to change the address, modify /path/to/.julia/v0.6/Notifier/email/address.txt directly or run register_email() again
 ```
 
 After you registered, you don't need to specify e-mail address.
 ```Julia
-	email("message")
+email("message")
 ```
 
 
@@ -93,12 +93,12 @@ Notifier.remove("group1")
 # Windows (Experimental)
 ## Usage
 ```Julia
-	using Notifier
-	notify("calculation done")
-	# defalut title is "Julia".
-	# You can change the title by title option.
-	notify("calculation done", title="foofoo")
-	notify("calculation done", sound=true) # with sound
-	notify("calculation done", sound="foo.wav") # specify a sound file
-	alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
+using Notifier
+notify("calculation done")
+# defalut title is "Julia".
+# You can change the title by title option.
+notify("calculation done", title="foofoo")
+notify("calculation done", sound=true) # with sound
+notify("calculation done", sound="foo.wav") # specify a sound file
+alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
 ```
