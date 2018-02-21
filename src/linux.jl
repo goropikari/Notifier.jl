@@ -80,7 +80,7 @@ function email(message; subject="$(round(now(), Dates.Second(1)))", To="not-spec
             println("Email address is not specified.")
             println("In order to send an e-mail, register an e-mail address by register_email() or")
             println("specify it by To option like")
-            println("	email(\"some messages\", To=\"foo@example.com\").")
+            println("   email(\"some messages\", To=\"foo@example.com\").")
 
             return
         end
