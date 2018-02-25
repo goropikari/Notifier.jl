@@ -3,7 +3,7 @@ export notify, alarm
 
 @doc """
 ---
-notify(message::AbstractString;
+Notifier.notify(message::AbstractString;
        title::AbstractString,
        sound::Union{Bool, AbstractString},
        time::Real)
@@ -30,9 +30,9 @@ function notify(message::AbstractString;
 end
 
 @doc """
-    alarm(;sound::AbstractString)
-    notify by sound
+Notifier.alarm(;sound::AbstractString)
+notify by sound
 
-    if you choose a specific sound WAV file, you can use it instead of the default sound.
+if you choose a specific sound WAV file, you can use it instead of the default sound.
 """ alarm
 alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav")) = @async run(`powershell -Command '('new-object System.Media.SoundPlayer $sound')'.PlaySync'('')'`)

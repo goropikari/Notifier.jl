@@ -27,10 +27,10 @@ function notify(message::AbstractString;
 end
 
 @doc """
-    alarm(;sound::AbstractString)
-    notify by sound
+Notifier.alarm(;sound::AbstractString)
+notify by sound
 
-    if you choose a specific sound WAV file, you can use it instead of the defalut sound.
+if you choose a specific sound WAV file, you can use it instead of the defalut sound.
 """ alarm
 function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"))
     @async run(`aplay -q $sound`)
@@ -38,7 +38,7 @@ function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"))
 end
 
 @doc """
-register_email()
+Notifier.register_email()
 
 register a recipient e-mail address
 """ register_email
@@ -68,7 +68,7 @@ function register_email()
 end
 
 @doc """
-email(message; subject, To)
+Notifier.email(message; subject, To)
 
 defalut\n
 subject="\$(round(now(), Dates.Second(1)))"\n
