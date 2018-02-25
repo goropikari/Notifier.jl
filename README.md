@@ -6,7 +6,7 @@ This package is notification tools for Julialang.
 
 ## Installation
 ```Julia
-Pkg.clone("git://github.com/goropikari/Notifier.jl.git")
+Pkg.add("Notifier")
 ```
 
 # Linux OS
