@@ -1,9 +1,9 @@
 import Base.notify
-export notify, register_email, email, alarm
+export notify, alarm, register_email, email
 
 @doc """
 ---
-notify(message::AbstractString; title::AbstractString, sound, time)
+Notifier.notify(message::AbstractString; title::AbstractString, sound, time)
 
 defalut parameter\n
     title = "Julia"\n
@@ -11,9 +11,9 @@ defalut parameter\n
     time = 4 # display time (seconds)
 """ notify
 function notify(message::AbstractString;
-                 title="Julia",
-                 sound::Union{Bool, AbstractString}=false,
-                 time::Real=4)
+                title="Julia",
+                sound::Union{Bool, AbstractString}=false,
+                time::Real=4)
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
             @async run(`aplay -q $(joinpath(@__DIR__, "default.wav"))`)
@@ -24,6 +24,17 @@ function notify(message::AbstractString;
     run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
 
     return
+end
+
+@doc """
+    alarm(;sound::AbstractString)
+    notify by sound
+
+    if you choose a specific sound WAV file, you can use it instead of the defalut sound.
+""" alarm
+function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"))
+    @async run(`aplay -q $sound`)
+    return nothing
 end
 
 @doc """
@@ -55,14 +66,6 @@ function register_email()
     println("\nRecipient e-mail address is saved at $(abspath((joinpath(emaildir, "address.txt")))).")
     println("If you want to change the address, modify $(abspath((joinpath(emaildir, "address.txt")))) directly or run register_email() again.")
 end
-
-@doc """
-    alarm(;sound::AbstractString)
-    notify by sound
-
-    if you choose a specific sound WAV file, you can use it instead of the defalut sound.
-""" alarm
-alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav")) = @async run(`aplay -q $sound`)
 
 @doc """
 email(message; subject, To)

@@ -1,5 +1,6 @@
 # Notifier
 [![Build Status](https://travis-ci.org/goropikari/Notifier.jl.svg?branch=master)](https://travis-ci.org/goropikari/Notifier.jl)
+[![codecov.io](http://codecov.io/github/goropikari/Notifier.jl/coverage.svg?branch=master)](http://codecov.io/github/goropikari/Notifier.jl?branch=master)
 
 This package is notification tools for Julialang.
 
@@ -11,15 +12,15 @@ Pkg.clone("git://github.com/goropikari/Notifier.jl.git")
 # Linux OS
 ## Setup
 Before using Notifier.jl, you need to install following softwares in your Linux system.
-- "libnotify" for a desktop notification
-- "mail" for an e-mail notification
-- "aplay" (Advanced Linux Sound Architecture) for a sound notification
+- `libnotify` for a desktop notification
+- `mail` for an e-mail notification
+- `aplay` (Advanced Linux Sound Architecture) for a sound notification
 
 ```bash
-sudo apt install libnotify-bin alsa-utils mailutils heirloom-mailx bsd-mailx
+$ sudo apt install libnotify-bin alsa-utils mailutils heirloom-mailx bsd-mailx
 ```
 
-This package uses "mail" linux command to notify by e-mail. Thus you need some settings in advance.
+This package uses `mail` linux command to notify by e-mail. Thus you need some settings in advance.
 If following command works correctly, you don't need further setting.
 ```bash
 $ echo test | mail -s foo yourmail@example.com
