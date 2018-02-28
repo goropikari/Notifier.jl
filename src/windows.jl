@@ -1,17 +1,19 @@
 import Base.notify
 export notify, alarm
 
-@doc """
+"""
 ---
-Notifier.notify(message::AbstractString;
-       title::AbstractString,
-       sound::Union{Bool, AbstractString},
-       time::Real)
+    Notifier.notify(message::AbstractString;
+                    title::AbstractString,
+                    sound::Union{Bool, AbstractString},
+                    time::Real)
 
-default parameter\n
-    title = "Julia"\n
-    time = 4 # display time (seconds). If you set time=0, then the message box is displayed until you put botton.
-""" notify
+    default parameter\n
+        title = "Julia"\n
+        time = 4 # display time (seconds).
+
+If you set time=0, then the message box is displayed until you put botton.
+"""
 function notify(message::AbstractString;
                  title="Julia",
                  sound::Union{Bool, AbstractString}=false,
@@ -20,7 +22,6 @@ function notify(message::AbstractString;
         if sound == true
             @async run(`powershell -Command '('new-object System.Media.SoundPlayer $(joinpath(@__DIR__, "default.wav"))')'.PlaySync'('')'`)
         elseif ispath(sound)
-            #@async run(`aplay -q $sound`)
             @async run(`powershell -Command '('new-object System.Media.SoundPlayer $sound')'.PlaySync'('')'`)
         end
     end
@@ -29,10 +30,11 @@ function notify(message::AbstractString;
     return
 end
 
-@doc """
-Notifier.alarm(;sound::AbstractString)
+"""
+    Notifier.alarm(;sound::AbstractString)
+
 notify by sound
 
-if you choose a specific sound WAV file, you can use it instead of the default sound.
-""" alarm
+If you choose a specific WAV file, you can play it instead of the default sound.
+"""
 alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav")) = @async run(`powershell -Command '('new-object System.Media.SoundPlayer $sound')'.PlaySync'('')'`)
