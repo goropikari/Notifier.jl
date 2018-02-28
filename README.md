@@ -11,6 +11,7 @@ This package is notification tools for Julialang.
    - email notification
  - Windows (Experimental)
    - desktop notification
+   - sound notification
 
 
 ## Installation
