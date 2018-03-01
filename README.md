@@ -13,7 +13,7 @@ This package is notification tools for Julialang.
    - desktop notification
    - sound notification
    - email notification
-   - say notification
+   - say notification (read given massage aloud)
  - Windows (Experimental)
    - desktop notification
    - sound notification
@@ -53,7 +53,7 @@ notify("calculation done", sound=true) # with sound
 notify("calculation done", sound="foo.wav") # specify a sound file
 alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
 ```
-![Screenshot of a Notification](./docs/popup.png?raw=true)
+![Screenshot of a Notification](./docs/linuxpopup.png?raw=true)
 
 ### e-mail notification
 ```Julia
@@ -90,7 +90,7 @@ alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
 say("Finish calculation!") # Read aloud
 ```
 
-![Screenshot of a Notification](./docs/screenshot.png?raw=true)
+![Screenshot of a Notification](./docs/macpopup.png?raw=true)
 
 Other supported parameters include `group` and `subtitle`.
 
