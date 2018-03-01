@@ -40,7 +40,7 @@ end
 catch
     false
 end
-@test try
+isinteractive() && @test try
     say("Hello")
     true
 catch
