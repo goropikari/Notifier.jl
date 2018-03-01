@@ -1,5 +1,5 @@
 import Base.notify
-export notify, alarm
+export notify, alarm, say
 
 include("email.jl")
 
@@ -14,7 +14,7 @@ end
 """
     Notifier.notify(message=""; title="Julia", subtitle="", group="", sound=false, sender="org.julialang.launcherapp")
 
-popup notification
+Notify by desktop notification.
 """
 function notify(message=""; title="Julia", subtitle="", group="", sound=false, sender="org.julialang.launcherapp")
     if group != "" && sound != "" && sound != false
@@ -33,7 +33,7 @@ function remove(group="ALL"; sender="org.julialang.launcherapp")
 end
 
 """
-    Notifier.alarm(;sound::AbstractString)
+    Notifier.alarm(;sound=joinpath(@__DIR__, "default.wav"))
 
 Notify by sound.
 If you choose a specific sound WAV file, you can play it instead of the defalut sound.
@@ -51,4 +51,13 @@ function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"))
     end
 
     return nothing
+end
+
+"""
+    Notifier.say(message::AbstractString)
+
+Read given message aloud.
+"""
+function say(msg::AbstractString)
+    run(`say $msg`)
 end

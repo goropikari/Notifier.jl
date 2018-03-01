@@ -5,14 +5,18 @@
 This package is notification tools for Julialang.
 
  ## Features:
- - Linux and macOS
+ - Linux
    - desktop notification
    - sound notification
    - email notification
+ - macOS
+   - desktop notification
+   - sound notification
+   - email notification
+   - say notification
  - Windows (Experimental)
    - desktop notification
    - sound notification
-
 
 ## Installation
 ```Julia
@@ -83,6 +87,7 @@ notify("Task completed")
 notify("Change title", title="foofoo")
 notify("Notification with sound", sound=true)
 alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
+say("Finish calculation!")
 ```
 
 ![Screenshot of a Notification](./docs/screenshot.png?raw=true)
