@@ -1,4 +1,5 @@
 # Notifier
+[![Notifier](http://pkg.julialang.org/badges/Notifier_0.6.svg)](http://pkg.julialang.org/detail/Notifier)
 [![Build Status](https://travis-ci.org/goropikari/Notifier.jl.svg?branch=master)](https://travis-ci.org/goropikari/Notifier.jl)
 [![codecov.io](http://codecov.io/github/goropikari/Notifier.jl/coverage.svg?branch=master)](http://codecov.io/github/goropikari/Notifier.jl?branch=master)
 
@@ -13,7 +14,7 @@ This package is notification tools for Julialang.
    - desktop notification
    - sound notification
    - email notification
-   - say notification (read given massage aloud)
+   - say notification (Read given massage aloud)
  - Windows (Experimental)
    - desktop notification
    - sound notification
@@ -45,12 +46,12 @@ $ echo test | mail -s foo yourmail@example.com
 ### popup notification
 ```Julia
 using Notifier
-notify("calculation done")
+notify("Task completed")
 # defalut title is "Julia".
 # You can change the title by title option.
-notify("calculation done", title="foofoo")
-notify("calculation done", sound=true) # with sound
-notify("calculation done", sound="foo.wav") # specify a sound file
+notify("Task completed", title="foofoo")
+notify("Task completed", sound=true) # with sound
+notify("Task completed", sound="foo.wav") # specify a sound file
 alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
 ```
 ![Screenshot of a Notification](./docs/linuxpopup.png?raw=true)
