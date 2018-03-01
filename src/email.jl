@@ -3,7 +3,7 @@ export register_email, email
 """
     Notifier.register_email()
 
-register a recipient e-mail address
+Register a recipient e-mail address.
 """
 function register_email()
     emaildir = joinpath(@__DIR__, "..", "email")
@@ -33,11 +33,10 @@ end
 """
     Notifier.email(message; subject, To)
 
-    defalut
-        subject="\$(round(now(), Dates.Second(1)))"
-        To=""
-
 Send email to specific email address.
+
+# Arguments
+- `To::AbstractString`: recipient email adress.
 """
 function email(message; subject="$(round(now(), Dates.Second(1)))", To="")
     emaildir = joinpath(@__DIR__, "..", "email")
@@ -50,8 +49,6 @@ function email(message; subject="$(round(now(), Dates.Second(1)))", To="")
                            register_email()
                        or specify the address by using To option.
                            email(\"some messages\", To=\"foo@example.com\").""")
-
-            return
         end
     end
     run(pipeline(`echo $message`, `mail -s $subject $To`))

@@ -5,14 +5,13 @@ include("email.jl")
 
 """
 ---
-    Notifier.notify(message::AbstractString; title::AbstractString, sound, time)
+    Notifier.notify(message; title="Julia", sound=false, time=4)
 
-    defalut parameter
-        title = "Julia"
-        sound = false
-        time = 4 # display time (seconds)
+Notify by desktop notification.
 
-popup notification
+# Arguments
+- `sound::Union{Bool, AbstractString}`: Play default sound or specific sound.
+- `time::Real`: display time.
 """
 function notify(message::AbstractString;
                 title="Julia",
@@ -31,7 +30,7 @@ function notify(message::AbstractString;
 end
 
 """
-    Notifier.alarm(;sound::AbstractString)
+    Notifier.alarm(;sound="defalut.wav")
 
 Notify by sound.
 If you choose a specific sound WAV file, you can play it instead of the defalut sound.

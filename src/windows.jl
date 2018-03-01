@@ -1,18 +1,15 @@
 import Base.notify
 export notify, alarm
-
 """
 ---
-    Notifier.notify(message::AbstractString;
-                    title::AbstractString,
-                    sound::Union{Bool, AbstractString},
-                    time::Real)
+    Notifier.notify(message; title="Julia", sound=false, time=4)
 
-    default parameter\n
-        title = "Julia"\n
-        time = 4 # display time (seconds).
+Notify by desktop notification.
 
-If you set time=0, then the message box is displayed until you put botton.
+# Arguments
+- `sound::Union{Bool, AbstractString}`: Play default sound or specific sound.
+- `time::Real`: display time. If you set time=0, then the message box is displayed
+                until you put the botton.
 """
 function notify(message::AbstractString;
                  title="Julia",
@@ -31,10 +28,14 @@ function notify(message::AbstractString;
 end
 
 """
-    Notifier.alarm(;sound::AbstractString)
+    Notifier.alarm(;sound=joinpath(@__DIR__, "default.wav"))
 
-notify by sound
-
-If you choose a specific WAV file, you can play it instead of the default sound.
+Notify by sound.
+If you choose a specific sound WAV file, you can play it instead of the defalut sound.
+```julia
+alarm(sound="foo.wav")
+```
 """
-alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav")) = @async run(`powershell -Command '('new-object System.Media.SoundPlayer $sound')'.PlaySync'('')'`)
+function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"))
+    @async run(`powershell -Command '('new-object System.Media.SoundPlayer $sound')'.PlaySync'('')'`)
+end
