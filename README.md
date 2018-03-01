@@ -87,7 +87,7 @@ notify("Task completed")
 notify("Change title", title="foofoo")
 notify("Notification with sound", sound=true)
 alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
-say("Finish calculation!")
+say("Finish calculation!") # Read aloud
 ```
 
 ![Screenshot of a Notification](./docs/screenshot.png?raw=true)
