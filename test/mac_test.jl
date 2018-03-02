@@ -34,3 +34,15 @@ end
 catch
     false
 end
+@test try
+    alarm()
+    true
+catch
+    false
+end
+isinteractive() && @test try
+    say("Hello")
+    true
+catch
+    false
+end
