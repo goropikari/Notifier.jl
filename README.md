@@ -5,6 +5,12 @@
 
 This package is notification tools for Julialang.
 
+```julia
+using Notifier
+notify("Task completed")
+```
+![Screenshot of a Notification](./docs/linuxpopup.png?raw=true)
+
  ## Features:
  - Linux
    - desktop notification
@@ -22,7 +28,6 @@ This package is notification tools for Julialang.
 ## Installation
 ```Julia
 Pkg.add("Notifier")
-# Pkg.checkout("Notifier") # checkout master branch
 ```
 
 # Linux OS
