@@ -1,4 +1,6 @@
 # Notifier
+[![Notifier](http://pkg.julialang.org/badges/Notifier_0.6.svg)](http://pkg.julialang.org/detail/Notifier)
+[![Notifier](http://pkg.julialang.org/badges/Notifier_0.7.svg)](http://pkg.julialang.org/detail/Notifier)
 [![Build Status](https://travis-ci.org/goropikari/Notifier.jl.svg?branch=master)](https://travis-ci.org/goropikari/Notifier.jl)
 [![codecov.io](http://codecov.io/github/goropikari/Notifier.jl/coverage.svg?branch=master)](http://codecov.io/github/goropikari/Notifier.jl?branch=master)
 
