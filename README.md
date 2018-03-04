@@ -11,15 +11,11 @@ notify("Task completed")
 ![Screenshot of a Notification](./docs/linuxpopup.png?raw=true)
 
  ## Features:
- - Linux
+ - Linux and macOS
    - desktop notification
    - sound notification
-   - email notification
- - macOS
-   - desktop notification
-   - sound notification
-   - email notification
    - say notification (Read a given massage aloud)
+   - email notification
  - Windows (Experimental)
    - desktop notification
    - sound notification
@@ -30,18 +26,18 @@ notify("Task completed")
 Pkg.add("Notifier")
 ```
 
-# Linux OS
-## Setup
+## Setup for Linux user
 Before using Notifier.jl, you need to install following softwares in your Linux system.
 - `libnotify` for a desktop notification
 - `mail` for an e-mail notification
 - `aplay` (Advanced Linux Sound Architecture) for a sound notification
+- `espeak` for reading a given massage aloud
 
 ```bash
-$ sudo apt install libnotify-bin alsa-utils mailutils heirloom-mailx bsd-mailx
+$ sudo apt install libnotify-bin alsa-utils espeak mailutils heirloom-mailx bsd-mailx
 ```
 
-This package uses `mail` command to notify by e-mail. Thus you need some settings in advance.
+This package uses `mail` command to notify by e-mail. You may need some settings in advance.
 If following command works correctly, you don't need further setting.
 ```bash
 $ echo test | mail -s foo yourmail@example.com
@@ -56,64 +52,23 @@ notify("Task completed")
 # You can change the title by title option.
 notify("Task completed", title="foofoo")
 notify("Task completed", sound=true) # with sound
-notify("Task completed", sound="foo.wav") # specify a sound file
-alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
+notify("Task completed", sound="foo.wav") # Specify a sound file (for Linux and Windows)
 ```
+Linux  
 ![Screenshot of a Notification](./docs/linuxpopup.png?raw=true)
 
-### e-mail notification
-```Julia
-email("message", To="foo@example.com") # default subject is set by date.
-email("message", subject="result", To="foo@example.com")
-```
+macOS  
+![Screenshot of a Notification](./docs/macpopup.png?raw=true)
 
+Windows  
+![Screenshot of a Notification](./docs/winpopup.png?raw=true)
 
-If you use "email" function frequently, I recommend you to register your email address by "register_email" function.
-```Julia
-julia> register_email()
-Type your desired recipient e-mail address to receive a notification.
-e-mail: foo@example.com
-
-Recipient e-mail address is saved at /path/to/.julia/v0.6/Notifier/email/address.txt.
-If you want to change the address, modify /path/to/.julia/v0.6/Notifier/email/address.txt directly or run register_email() again
-```
-
-After you registered, you don't need to specify e-mail address.
-```Julia
-email("message")
-```
-
-
-# macOS
-## Usage
-### popup notification
+### sound and say notification
 ```julia
-using Notifier
-notify("Task completed")
-notify("Change title", title="foofoo")
-notify("Notification with sound", sound=true)
 alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
 say("Finish calculation!") # Read aloud
 ```
 
-![Screenshot of a Notification](./docs/macpopup.png?raw=true)
-
-Other supported parameters include `group` and `subtitle`.
-
-You can also remove notifications. However, this does not seem to work reliably.
-
-```julia
-Notifier.remove() # removes all notifications
-```
-
-To remove specific notifications, you need to specify a group identifier when calling `notify`. This identifier can then be passed to `remove()`.
-
-```julia
-notify("Notification A", group="group1")
-notify("Notification B", group="group2")
-
-Notifier.remove("group1")
-```
 
 ### e-mail notification
 ```Julia
@@ -122,7 +77,7 @@ email("message", subject="result", To="foo@example.com")
 ```
 
 
-If you use "email" function frequently, I recommend you to register your email address by "register_email" function.
+If you use `email` function frequently, I recommend you to register your email address by `register_email` function.
 ```Julia
 julia> register_email()
 Type your desired recipient e-mail address to receive a notification.
@@ -137,16 +92,5 @@ After you registered, you don't need to specify e-mail address.
 email("message")
 ```
 
-# Windows (Experimental)
-## Usage
-```Julia
-using Notifier
-notify("calculation done")
-# defalut title is "Julia".
-# You can change the title by title option.
-notify("calculation done", title="foofoo")
-notify("calculation done", sound=true) # with sound
-notify("calculation done", sound="foo.wav") # specify a sound file
-alarm() # only sound. You can specify a sound file, alarm(sound="foo.wav")
-```
-![Screenshot of a Notification](./docs/winpopup.png?raw=true)
+## Acknowledgement
+Inspired by [OSXNotifier.jl](https://github.com/jonasrauber/OSXNotifier.jl).
