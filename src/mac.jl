@@ -56,7 +56,7 @@ end
 """
     Notifier.say(message::AbstractString)
 
-Read given message aloud.
+Read a given message aloud.
 """
 function say(msg::AbstractString)
     run(`say $msg`)

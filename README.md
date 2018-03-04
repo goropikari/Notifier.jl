@@ -1,5 +1,4 @@
 # Notifier
-[![Notifier](http://pkg.julialang.org/badges/Notifier_0.6.svg)](http://pkg.julialang.org/detail/Notifier)
 [![Build Status](https://travis-ci.org/goropikari/Notifier.jl.svg?branch=master)](https://travis-ci.org/goropikari/Notifier.jl)
 [![codecov.io](http://codecov.io/github/goropikari/Notifier.jl/coverage.svg?branch=master)](http://codecov.io/github/goropikari/Notifier.jl?branch=master)
 
@@ -20,10 +19,11 @@ notify("Task completed")
    - desktop notification
    - sound notification
    - email notification
-   - say notification (Read given massage aloud)
+   - say notification (Read a given massage aloud)
  - Windows (Experimental)
    - desktop notification
    - sound notification
+   - say notification (Read a given massage aloud)
 
 ## Installation
 ```Julia
