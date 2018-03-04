@@ -17,6 +17,7 @@ addons:
         packages:
         - libnotify-bin
         - alsa-utils
+        - espeak
 script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
   - julia -e 'Pkg.clone(pwd()); Pkg.build("Notifier"); Pkg.test("Notifier"; coverage=true)'
