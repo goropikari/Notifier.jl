@@ -1,9 +1,14 @@
 # Notifier
-[![Notifier](http://pkg.julialang.org/badges/Notifier_0.6.svg)](http://pkg.julialang.org/detail/Notifier)
 [![Build Status](https://travis-ci.org/goropikari/Notifier.jl.svg?branch=master)](https://travis-ci.org/goropikari/Notifier.jl)
 [![codecov.io](http://codecov.io/github/goropikari/Notifier.jl/coverage.svg?branch=master)](http://codecov.io/github/goropikari/Notifier.jl?branch=master)
 
 This package is notification tools for Julialang.
+
+```julia
+using Notifier
+notify("Task completed")
+```
+![Screenshot of a Notification](./docs/linuxpopup.png?raw=true)
 
  ## Features:
  - Linux
@@ -14,15 +19,15 @@ This package is notification tools for Julialang.
    - desktop notification
    - sound notification
    - email notification
-   - say notification (Read given massage aloud)
+   - say notification (Read a given massage aloud)
  - Windows (Experimental)
    - desktop notification
    - sound notification
+   - say notification (Read a given massage aloud)
 
 ## Installation
 ```Julia
 Pkg.add("Notifier")
-# Pkg.checkout("Notifier") # checkout master branch
 ```
 
 # Linux OS
