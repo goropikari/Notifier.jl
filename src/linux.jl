@@ -1,5 +1,5 @@
 import Base.notify
-export notify, alarm, register_email, email
+export notify, alarm, say, register_email, email
 
 include("email.jl")
 
@@ -38,4 +38,13 @@ If you choose a specific sound WAV file, you can play it instead of the defalut 
 function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"))
     @async run(`aplay -q $sound`)
     return nothing
+end
+
+"""
+    Notifier.say(message::AbstractString)
+
+Read a given message aloud.
+"""
+function say(msg::AbstractString)
+    run(pipeline(`espeak $msg`, stderr=DevNull))
 end

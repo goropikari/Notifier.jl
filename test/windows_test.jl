@@ -28,3 +28,9 @@ end
 catch
     false
 end
+@test try
+    say("Hello world")
+    true
+catch
+    false
+end
