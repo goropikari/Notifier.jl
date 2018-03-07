@@ -46,5 +46,5 @@ end
 Read a given message aloud.
 """
 function say(msg::AbstractString)
-    run(`espeak $msg`)
+    run(pipeline(`espeak $msg`, stderr=DevNull))
 end
