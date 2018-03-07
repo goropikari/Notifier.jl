@@ -2,6 +2,7 @@
 [![Notifier](http://pkg.julialang.org/badges/Notifier_0.6.svg)](http://pkg.julialang.org/detail/Notifier)
 [![Notifier](http://pkg.julialang.org/badges/Notifier_0.7.svg)](http://pkg.julialang.org/detail/Notifier)
 [![Build Status](https://travis-ci.org/goropikari/Notifier.jl.svg?branch=master)](https://travis-ci.org/goropikari/Notifier.jl)
+[![Build status](https://ci.appveyor.com/api/projects/status/cv0ilbo2f6d43xcp?svg=true)](https://ci.appveyor.com/project/goropikari/notifier-jl)
 [![codecov.io](http://codecov.io/github/goropikari/Notifier.jl/coverage.svg?branch=master)](http://codecov.io/github/goropikari/Notifier.jl?branch=master)
 
 This package is notification tools for Julialang.
