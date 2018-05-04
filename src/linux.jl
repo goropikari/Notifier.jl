@@ -16,7 +16,8 @@ Notify by desktop notification.
 function notify(message::AbstractString;
                 title="Julia",
                 sound::Union{Bool, AbstractString}=false,
-                time::Real=4)
+                time::Real=4,
+                logo::AbstractString=joinpath(@__DIR__, "logo.svg"))
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
             @async run(`aplay -q $(joinpath(@__DIR__, "default.wav"))`)
@@ -24,7 +25,7 @@ function notify(message::AbstractString;
             @async run(`aplay -q $sound`)
         end
     end
-    run(`notify-send $title $message -i $(joinpath(@__DIR__, "logo.svg")) -t $(time * 1000)`)
+    run(`notify-send $title $message -i $(logo) -t $(time * 1000)`)
 
     return
 end
