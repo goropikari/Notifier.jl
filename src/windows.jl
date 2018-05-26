@@ -17,7 +17,8 @@ function notify(message::AbstractString;
                  time::Real=8)
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
-            @async run(`powershell -Command '('new-object System.Media.SoundPlayer $(joinpath(@__DIR__, "default.wav"))')'.PlaySync'('')'`)
+            d = @__DIR__
+            @async run(`powershell -Command '('new-object System.Media.SoundPlayer $(joinpath(d, "default.wav"))')'.PlaySync'('')'`)
         elseif ispath(sound)
             @async run(`powershell -Command '('new-object System.Media.SoundPlayer $sound')'.PlaySync'('')'`)
         end

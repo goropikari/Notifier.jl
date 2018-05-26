@@ -1,10 +1,12 @@
 __precompile__()
 
 module Notifier
+using Compat
+import Compat: Sys
 
-is_linux() && include("linux.jl")
-is_apple() && include("mac.jl")
-is_windows() && include("windows.jl")
+Sys.islinux() && include("linux.jl")
+Sys.isapple() && include("mac.jl")
+Sys.iswindows() && include("windows.jl")
 
 include("timer.jl")
 end # module

@@ -1,15 +1,19 @@
 using Notifier
-import Base.Dates: Time, Hour, Minute, Second
-using Base.Test
+import Compat: Sys
+@static if VERSION < v"0.7.0-DEV.5222"
+    using Base.Test
+else
+    using Test
+end
 
 # write your own tests here
-if is_linux()
+if Sys.islinux()
     include("linux_test.jl")
 end
-if is_apple()
+if Sys.isapple()
     include("mac_test.jl")
 end
-if is_windows()
+if Sys.iswindows()
     include("windows_test.jl")
 end
 

@@ -1,4 +1,7 @@
 import Base.notify
+@static if VERSION > v"0.6.2"
+    using Pkg
+end
 export notify, alarm, say
 
 include("email.jl")

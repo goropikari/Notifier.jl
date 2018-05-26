@@ -1,4 +1,4 @@
-import Base.Dates: Hour, Minute, Second, Time
+import Compat.Dates: Hour, Minute, Second, Time
 export countup, countdown
 
 """
@@ -12,15 +12,15 @@ function countup(hour::Integer, minute::Integer, second::Integer)
         m = div(t, 60); t -= 60 * m
         s = t
         if isdefined(Main, :IJulia)
-            print(STDERR, Time(h,m,s))
+            print(stderr, Time(h,m,s))
         else
-            println(STDERR, Time(h,m,s))
+            println(stderr, Time(h,m,s))
         end
         sleep(1)
 
-        # ProgressMeter.jl: print(STDERR, "\r\u1b[K\u1b[A") is quated from
+        # ProgressMeter.jl: print(stderr, "\r\u1b[K\u1b[A") is quated from
         # https://github.com/timholy/ProgressMeter.jl/blob/2c5683bec16ba50d00bf7d8e267eda7ff7d74623/src/ProgressMeter.jl#L299
-        print(STDERR, "\r\u1b[K\u1b[A")
+        print(stderr, "\r\u1b[K\u1b[A")
     end
     alarm()
 end
@@ -42,13 +42,13 @@ function countdown(hour::Integer, minute::Integer, second::Integer)
         m = div(t, 60); t -= 60 * m
         s = t
         if isdefined(Main, :IJulia)
-            print(STDERR, Time(h,m,s))
+            print(stderr, Time(h,m,s))
         else
-            println(STDERR, Time(h,m,s))
+            println(stderr, Time(h,m,s))
         end
         sleep(1)
 
-        print(STDERR, "\r\u1b[K\u1b[A")
+        print(stderr, "\r\u1b[K\u1b[A")
     end
     alarm()
 end

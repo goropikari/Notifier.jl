@@ -1,3 +1,4 @@
+import Compat.Dates: Hour, Minute, Second, Time
 @test try
     countup(0,0,3)
     true

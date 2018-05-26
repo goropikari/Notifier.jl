@@ -12,7 +12,7 @@ function register_email()
     if ispath(joinpath(emaildir, "address.txt"))
         println("An e-mail address is already registered.")
         print("Do you overwrite? [y/n]: ")
-        YesNo = lowercase(chomp(readline(STDIN)))
+        YesNo = lowercase(chomp(readline(stdin)))
 
         if YesNo ∈ ["n", "no"]
             return nothing
@@ -21,7 +21,7 @@ function register_email()
 
     println("\nType your desired recipient e-mail address to receive a notification.")
     print("e-mail: ")
-    To = chomp(readline(STDIN))
+    To = chomp(readline(stdin))
     fp = open(joinpath(emaildir, "address.txt"), "w")
     write(fp, To)
     close(fp)

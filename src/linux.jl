@@ -21,7 +21,8 @@ function notify(message::AbstractString;
                 logo::AbstractString=joinpath(@__DIR__, "logo.svg"))
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
-            @async run(`aplay -q $(joinpath(@__DIR__, "default.wav"))`)
+            d = @__DIR__
+            @async run(`aplay -q $(joinpath(d, "default.wav"))`)
         elseif ispath(sound)
             @async run(`aplay -q $sound`)
         end
@@ -49,5 +50,5 @@ end
 Read a given message aloud.
 """
 function say(msg::AbstractString)
-    run(pipeline(`espeak $msg`, stderr=DevNull))
+    run(pipeline(`espeak $msg`, stderr=devnull))
 end
