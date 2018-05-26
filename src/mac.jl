@@ -27,6 +27,7 @@ function notify(message=""; title="Julia", subtitle="", group="", sound=false, s
         run(`$terminalnotifier -sender $sender -message $message -title $title -subtitle $subtitle`)
     end
 end
+notify() = notify("Task completed.")
 
 function remove(group="ALL"; sender="org.julialang.launcherapp")
     run(`$terminalnotifier -remove $group -sender $sender`)

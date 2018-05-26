@@ -1,4 +1,10 @@
 @test try
+    notify()
+    true
+catch
+    false
+end
+@test try
     notify("foo")
     true
 catch

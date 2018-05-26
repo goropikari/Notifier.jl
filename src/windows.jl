@@ -40,6 +40,7 @@ function notify(message::AbstractString;
 
     return nothing
 end
+notify() = notify("Task completed.")
 
 """
     Notifier.alarm(;sound=joinpath(@__DIR__, "default.wav"))

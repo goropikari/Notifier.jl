@@ -5,13 +5,14 @@ include("email.jl")
 
 """
 ---
-    Notifier.notify(message; title="Julia", sound=false, time=4)
+    Notifier.notify(message; title="Julia", sound=false, time=4, logo)
 
 Notify by desktop notification.
 
 # Arguments
 - `sound::Union{Bool, AbstractString}`: Play default sound or specific sound.
 - `time::Real`: display time.
+- `logo`: Default is Julia logo
 """
 function notify(message::AbstractString;
                 title="Julia",
@@ -29,12 +30,13 @@ function notify(message::AbstractString;
 
     return
 end
+notify() = notify("Task completed.")
 
 """
-    Notifier.alarm(;sound="defalut.wav")
+    Notifier.alarm(;sound="default.wav")
 
 Notify by sound.
-If you choose a specific sound WAV file, you can play it instead of the defalut sound.
+If you choose a specific sound WAV file, you can play it instead of the default sound.
 """
 function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"))
     @async run(`aplay -q $sound`)
