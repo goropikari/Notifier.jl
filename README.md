@@ -15,17 +15,19 @@ notify("Task completed")
 
  ## Features:
  - Linux and macOS
-   - desktop notification
+   - popup notification (desktop notification)
    - sound notification
    - say notification (Read a given massage aloud)
    - email notification
+   - count up and count down timer
  - Windows (Experimental)
-   - desktop notification
+   - popup notification (desktop notification)
    - sound notification
    - say notification (Read a given massage aloud)
+   - count up and count down timer
 
 ## Installation
-```Julia
+```julia
 Pkg.add("Notifier")
 ```
 
@@ -48,7 +50,7 @@ $ echo test | mail -s foo yourmail@example.com
 
 ## Usage
 ### popup notification
-```Julia
+```julia
 using Notifier
 notify("Task completed")
 # defalut title is "Julia".
@@ -74,14 +76,14 @@ say("Finish calculation!") # Read aloud
 
 
 ### e-mail notification
-```Julia
+```julia
 email("message", To="foo@example.com") # default subject is set by date.
 email("message", subject="result", To="foo@example.com")
 ```
 
 
 If you use `email` function frequently, I recommend you to register your email address by `register_email` function.
-```Julia
+```julia
 julia> register_email()
 Type your desired recipient e-mail address to receive a notification.
 e-mail: foo@example.com
@@ -91,9 +93,20 @@ If you want to change the address, modify /path/to/.julia/v0.6/Notifier/email/ad
 ```
 
 After you registered, you don't need to specify e-mail address.
-```Julia
+```julia
 email("message")
 ```
+
+
+
+### Timer
+When the specified time limit has been reached, notify by sound.
+```julia
+h,m,s = 1,2,3
+countup(h,m,s) # Hour, Minute, Second
+countdown(h,m,s)
+```
+
 
 ## Acknowledgement
 Inspired by [OSXNotifier.jl](https://github.com/jonasrauber/OSXNotifier.jl).
