@@ -1,4 +1,5 @@
 using Notifier
+import Base.Dates: Time, Hour, Minute, Second
 using Base.Test
 
 # write your own tests here
@@ -11,3 +12,5 @@ end
 if is_windows()
     include("windows_test.jl")
 end
+
+include("timer_test.jl")
