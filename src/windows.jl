@@ -27,10 +27,11 @@ function notify(message::AbstractString;
 
     # ref. Create a balloon notification in PowerShell / IT Pro
     # http://www.itprotoday.com/management-mobility/create-balloon-notification-powershell
+    d = @__DIR__
     @async run(`powershell '['Void']''['System.Reflection.Assembly']'':'':'LoadWithPartialName'(''"'System.Windows.Forms'"'')'';'
         \$objNotifyIcon = New-Object System.Windows.Forms.NotifyIcon';'
         \$objNotifyIcon.BalloonTipIcon = '"'Info'"'';'
-        \$objNotifyIcon.Icon = '"'$(joinpath(@__DIR__, "three-balls.ico"))'"'';'
+        \$objNotifyIcon.Icon = '"'$(joinpath(d, "three-balls.ico"))'"'';'
         \$objNotifyIcon.BalloonTipText = '"'$message'"'';'
         \$objNotifyIcon.BalloonTipTitle = '"'$title'"'';'
         \$objNotifyIcon.Visible = \$True';'
