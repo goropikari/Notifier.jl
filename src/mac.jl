@@ -1,5 +1,5 @@
 import Base.notify
-@static if VERSION > v"0.6.2"
+@static if VERSION > v"0.6.3"
     using Pkg
 end
 export notify, alarm, say
