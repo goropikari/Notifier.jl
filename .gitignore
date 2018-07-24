@@ -3,4 +3,4 @@
 *.jl.mem
 email
 deps/deps.jl
-
+NEWS.md

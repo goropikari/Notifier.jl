@@ -1,5 +1,4 @@
-import Base.notify
-export notify, alarm, say, register_email, email
+export alarm, say
 
 include("email.jl")
 

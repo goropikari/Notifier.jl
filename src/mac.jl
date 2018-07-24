@@ -1,8 +1,4 @@
-import Base.notify
-@static if VERSION >= v"0.7.0-DEV"
-    using Pkg
-end
-export notify, alarm, say
+export alarm, say
 
 include("email.jl")
 

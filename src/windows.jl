@@ -1,5 +1,4 @@
-import Base.notify
-export notify, alarm, say
+export alarm, say
 """
 ---
     Notifier.notify(message; title="Julia", sound=false, time=4)
