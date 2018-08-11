@@ -1,4 +1,4 @@
-import Compat.Dates: Hour, Minute, Second, Time
+using Dates
 export countup, countdown
 
 """

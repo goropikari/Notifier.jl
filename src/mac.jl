@@ -4,10 +4,14 @@ include("email.jl")
 
 if ispath("/usr/local/bin/terminal-notifier")
     const terminalnotifier = "/usr/local/bin/terminal-notifier"
-elseif ispath(joinpath(Pkg.dir("Homebrew"), "deps", "usr", "bin", "terminal-notifier"))
-    const terminalnotifier = joinpath(Pkg.dir("Homebrew"), "deps", "usr", "bin", "terminal-notifier")
 else
-    error("Notifier.jl is not properly installed. Please run Pkg.build(\"Notifier\")")
+    import Homebrew
+    d = joinpath(dirname(pathof(Homebrew)), "..")
+    if ispath(joinpath(d, "deps", "usr", "bin", "terminal-notifier"))
+        const terminalnotifier = joinpath(d, "deps", "usr", "bin", "terminal-notifier")
+    else
+        error("Notifier.jl is not properly installed. Please run Pkg.build(\"Notifier\")")
+    end
 end
 
 """

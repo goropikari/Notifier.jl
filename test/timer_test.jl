@@ -1,4 +1,4 @@
-import Compat.Dates: Hour, Minute, Second, Time
+using Dates
 @test try
     countup(0,0,3)
     true

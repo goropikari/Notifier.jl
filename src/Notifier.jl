@@ -1,12 +1,6 @@
-__precompile__()
-
 module Notifier
-using Compat
-import Compat: Sys
 
-@static if VERSION >= v"0.7.0-DEV"
-    using Pkg, Dates
-end
+using Pkg, Dates
 
 import Base.notify
 export notify

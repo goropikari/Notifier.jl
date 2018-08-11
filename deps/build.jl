@@ -1,4 +1,3 @@
-import Compat: Sys
 if Sys.isapple()
     using Homebrew
     Homebrew.add("terminal-notifier")
