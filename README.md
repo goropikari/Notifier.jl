@@ -26,6 +26,7 @@ notify("Task completed")
 
 ## Installation
 ```julia
+using Pkg
 Pkg.add("Notifier")
 ```
 
