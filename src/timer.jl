@@ -1,4 +1,3 @@
-using Dates
 export countup, countdown
 
 """
