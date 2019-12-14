@@ -15,13 +15,13 @@ notify("Task completed")
  - Linux and macOS
    - popup notification (desktop notification)
    - sound notification
-   - say notification (Read a given massage aloud)
+   - say notification (Read a given message aloud)
    - email notification
    - count up and count down timer
  - Windows (Experimental)
    - popup notification (desktop notification)
    - sound notification
-   - say notification (Read a given massage aloud)
+   - say notification (Read a given message aloud)
    - count up and count down timer
 
 ## Installation
