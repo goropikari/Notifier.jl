@@ -9,15 +9,24 @@ include("email.jl")
 Notify by desktop notification.
 
 # Arguments
+- `urgency::AbstractString` : Urgency level ("low", "normal", "critical"). Default is "normal".
 - `sound::Union{Bool, AbstractString}`: Play default sound or specific sound.
-- `time::Real`: display time.
+- `time::Real`: Display time.
 - `logo`: Default is Julia logo
+- `app_name::AbstractString` : Name of application sending the notification. Default is the name of your script (e.g. "test.jl") or "Julia REPL"/"Atom Juno" if using any of these two.
 """
 function notify(message::AbstractString;
                 title="Julia",
+                urgency::AbstractString="normal",
                 sound::Union{Bool, AbstractString}=false,
                 time::Real=4,
+                app_name::AbstractString=PROGRAM_FILE,
                 logo::AbstractString=joinpath(@__DIR__, "logo.svg"))
+    if app_name == "" && occursin("REPL", @__FILE__)    # Default for running in REPL
+        app_name = "Julia REPL"
+    elseif occursin("atom", app_name)                   # Default for running in Juno
+        app_name = "Atom Juno"
+    end
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
             d = @__DIR__
@@ -26,7 +35,7 @@ function notify(message::AbstractString;
             @async run(`aplay -q $sound`)
         end
     end
-    run(`notify-send $title $message -i $(logo) -t $(time * 1000)`)
+    run(`notify-send $title $message -u $urgency -a $app_name -i $(logo) -t $(time * 1000)`)
 
     return
 end
