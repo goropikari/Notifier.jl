@@ -22,9 +22,9 @@ function notify(message::AbstractString;
                 time::Real=4,
                 app_name::AbstractString=PROGRAM_FILE,
                 logo::AbstractString=joinpath(@__DIR__, "logo.svg"))
-    if app_name == "" && occursin("REPL", @__FILE__)    # Default for running in REPL
+    if app_name == "" && occursin("REPL", @__FILE__)   # Default for running in REPL
         app_name = "Julia REPL"
-    elseif occursin("atom", app_name)                   # Default for running in Juno
+    elseif occursin("atom", app_name) && occursin("boot_repl.jl", app_name)  # Default for running in Juno
         app_name = "Atom Juno"
     end
     if sound == true || typeof(sound) <: AbstractString
