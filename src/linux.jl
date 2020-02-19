@@ -56,7 +56,15 @@ end
     Notifier.say(message::AbstractString)
 
 Read a given message aloud.
+
+# Arguments
+- `backend::AbstractString` : a CLI test-to-speech program used to synthesize speech ("espreak","festival")
 """
-function say(msg::AbstractString)
-    run(pipeline(`espeak $msg`, stderr=devnull))
+function say(msg::AbstractString;
+            backend::AbstractString="espeak")
+    if backend == "espeak"
+        run(pipeline(`espeak $msg`, stderr=devnull))
+    elseif backend == "festival"
+        run(pipeline(`echo $msg`, `festival --tts`))
+    end
 end
