@@ -14,7 +14,6 @@ Notify by desktop notification.
 - `time::Real`: Display time.
 - `logo`: Default is Julia logo
 - `app_name::AbstractString` : Name of application sending the notification. Default is the name of your script (e.g. "test.jl") or "Julia REPL"/"Atom Juno" if using any of these two.
-- `sound_backend::AbstractString` : a CLI audio program used ("aplay","sox","vlc")
 """
 function notify(message::AbstractString;
                 title="Julia",
@@ -22,8 +21,7 @@ function notify(message::AbstractString;
                 sound::Union{Bool, AbstractString}=false,
                 time::Real=4,
                 app_name::AbstractString=PROGRAM_FILE,
-                logo::AbstractString=joinpath(@__DIR__, "logo.svg"),
-                sound_backend::AbstractString="aplay")
+                logo::AbstractString=joinpath(@__DIR__, "logo.svg"))
     if app_name == "" && occursin("REPL", @__FILE__)   # Default for running in REPL
         app_name = "Julia REPL"
     elseif occursin("atom", app_name) && occursin("boot_repl.jl", app_name)  # Default for running in Juno
@@ -31,9 +29,10 @@ function notify(message::AbstractString;
     end
     if sound == true || typeof(sound) <: AbstractString
         if sound == true
-            alarm(backend=sound_backend)
+            d = @__DIR__
+            @async run(`aplay -q $(joinpath(d, "default.wav"))`)
         elseif ispath(sound)
-            alarm(sound=sound, backend=sound_backend)
+            @async run(`aplay -q $sound`)
         end
     end
     run(`notify-send $title $message -u $urgency -a $app_name -i $(logo) -t $(time * 1000)`)
@@ -47,19 +46,9 @@ notify() = notify("Task completed.")
 
 Notify by sound.
 If you choose a specific sound WAV file, you can play it instead of the default sound.
-
-# Arguments
-- `backend::AbstractString` : a CLI audio program used ("aplay","sox","vlc")
 """
-function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"),
-                backend::AbstractString="aplay")
-    if backend == "aplay"
-        @async run(`aplay -q $sound`)
-    elseif backend == "sox"
-        @async run(`play -q $sound`)
-    elseif backend == "vlc"
-        @async run(`cvlc --play-and-exit --no-loop $sound 2> /dev/null`)
-    end
+function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"))
+    @async run(`aplay -q $sound`)
     return nothing
 end
 
