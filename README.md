@@ -3,6 +3,8 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/cv0ilbo2f6d43xcp?svg=true)](https://ci.appveyor.com/project/goropikari/notifier-jl)
 [![codecov.io](http://codecov.io/github/goropikari/Notifier.jl/coverage.svg?branch=master)](http://codecov.io/github/goropikari/Notifier.jl?branch=master)
 
+## *This package is no longer maintained.*
+
 This package is notification tools for Julialang.
 
 ```julia
