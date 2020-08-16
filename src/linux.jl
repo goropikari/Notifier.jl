@@ -58,7 +58,7 @@ function alarm(;sound::AbstractString=joinpath(@__DIR__, "default.wav"),
     elseif backend == "sox"
         @async run(`play -q $sound`)
     elseif backend == "vlc"
-        @async run(`cvlc --play-and-exit --no-loop $sound 2> /dev/null`)
+        @async run(pipeline(`cvlc --play-and-exit --no-loop $sound`, stderr=devnull))
     end
     return nothing
 end
